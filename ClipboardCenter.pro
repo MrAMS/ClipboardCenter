@@ -14,12 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         clipboarder.cpp \
-    item.cpp
+    item.cpp \
+    MyGlobalShortCut/MyGlobalShortCut.cpp \
+    MyGlobalShortCut/MyWinEventFilter.cpp
 
 HEADERS  += clipboarder.h \
-    item.h
+    item.h \
+    MyGlobalShortCut/MyGlobalShortCut.h \
+    MyGlobalShortCut/MyWinEventFilter.h
 
 FORMS    += clipboarder.ui
 
 RESOURCES += \
     icon.qrc
+
+RC_FILE = \
+    icon_logo.qrc

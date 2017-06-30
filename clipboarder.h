@@ -7,12 +7,14 @@
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
+#include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QListWidgetItem>
 #include <QSizePolicy>
 #include <QTimer>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 #include <QMap>
 #include <QClipboard>
@@ -23,6 +25,7 @@
 #include <QVariant>
 #include <QVariantList>
 #include <QApplication>
+#include <QDate>
 #include <QDateTime>
 #include <QSettings>
 #include <QCryptographicHash>
@@ -46,6 +49,7 @@ private:
     QStringList list_clipboarde;
     QTimer *timer = new QTimer(this);
     QTimer *timer_opTop = new QTimer(this);
+    QMap<QListWidgetItem*, item*> map_item_bored;
 
     bool mMoveing;
     QPoint mMovePosition;
@@ -55,6 +59,13 @@ private:
     virtual void mouseReleaseEvent(QMouseEvent *event);
 
 private slots:
+
+    void hotKey_Ctrl1();
+    void hotKey_Ctrl2();
+    void hotKey_Ctrl3();
+    void hotKey_Ctrl4();
+    void hotKey_Ctrl5();
+
     void clipboardChanged(QClipboard::Mode mode_);
 
     void fRefresh();
@@ -69,13 +80,16 @@ private slots:
     void itemIsStarChanged_receiver(QString text, bool isStar_);
     void itemClicked_receiver(QString text);
 
-    void addItem(QString text, QString time, bool isStar, int key);
-    void addItem(QString text, QString time, int key);
+    void addItem(QString text, QDateTime time, bool isStar, int key);
+    void addItem(QString text, QDateTime time, int key);
+
+    void openUrl(QString url);
 
     void on_pushButton_toHistory_clicked();
     void on_pushButton_toStar_clicked();
     void on_pushButton_clicked();
     void on_pushButton_info_clicked();
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item_);
 };
 
 #endif // CLIPBOARDER_H

@@ -1,6 +1,7 @@
 #include "clipboarder.h"
 #include "ui_clipboarder.h"
 
+
 Clipboarder::Clipboarder(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Clipboarder)
@@ -12,7 +13,7 @@ Clipboarder::Clipboarder(QWidget *parent) :
     setAttribute(Qt::WA_TranslucentBackground);
     QGraphicsDropShadowEffect *shadow_effect = new QGraphicsDropShadowEffect(this);
     shadow_effect->setOffset(-5, 5);
-    shadow_effect->setColor(Qt::gray);
+    shadow_effect->setColor(QColor("#3A4055"));
     shadow_effect->setBlurRadius(8);
     ui->frame_main->setGraphicsEffect(shadow_effect);
     ui->stackedWidget->setCurrentIndex(0);
@@ -49,6 +50,41 @@ void Clipboarder::mouseMoveEvent(QMouseEvent *event)
 void Clipboarder::mouseReleaseEvent(QMouseEvent *event)
 {
     mMoveing = false;
+}
+
+void Clipboarder::hotKey_Ctrl1()
+{
+    if(list_clipboarde.length()<2)
+        return;
+    setClipboardText(list_clipboarde[1]);
+}
+
+void Clipboarder::hotKey_Ctrl2()
+{
+    if(list_clipboarde.length()<3)
+        return;
+    setClipboardText(list_clipboarde[2]);
+}
+
+void Clipboarder::hotKey_Ctrl3()
+{
+    if(list_clipboarde.length()<4)
+        return;
+    setClipboardText(list_clipboarde[3]);
+}
+
+void Clipboarder::hotKey_Ctrl4()
+{
+    if(list_clipboarde.length()<5)
+        return;
+    setClipboardText(list_clipboarde[4]);
+}
+
+void Clipboarder::hotKey_Ctrl5()
+{
+    if(list_clipboarde.length()<6)
+        return;
+    setClipboardText(list_clipboarde[5]);
 }
 
 void Clipboarder::clipboardChanged(QClipboard::Mode mode_)
@@ -94,7 +130,7 @@ void Clipboarder::loadClipboardList(QClipboard::Mode mode_)
     ui->listWidget->clear();
     int key=0;
     foreach (QString text, list_clipboarde) {
-        addItem(text, QDateTime::currentDateTime().toString("yyyy-MM-dd dddd hh:mm"), isStarText(text), key);
+        addItem(text, QDateTime::currentDateTime(), isStarText(text), key);
         key++;
     }
 }
@@ -102,6 +138,7 @@ void Clipboarder::loadClipboardList(QClipboard::Mode mode_)
 void Clipboarder::loadStarList()
 {
     ui->listWidget_starList->clear();
+    map_item_bored.clear();
 
     QSettings settings("AMS","ClipboardCenter");
     settings.beginGroup("starList");
@@ -113,7 +150,7 @@ void Clipboarder::loadStarList()
             continue;
         QString text = list[0];
         QString time = list[1];
-        addItem(text, time, key);
+        addItem(text, QDateTime::fromString(time,"yyyy-MM-dd dddd hh:mm"), key);
         key++;
     }
     settings.endGroup();
@@ -122,7 +159,8 @@ void Clipboarder::loadStarList()
 bool Clipboarder::isStarText(QString text)
 {
     QString ID;
-    ID.prepend(QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Md4));    QSettings settings("AMS","ClipboardCenter");
+    ID.prepend(QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Md4));
+    QSettings settings("AMS","ClipboardCenter");
     settings.beginGroup("starList");
     if(settings.contains(ID))
         return true;
@@ -133,6 +171,8 @@ bool Clipboarder::isStarText(QString text)
 
 void Clipboarder::itemIsStarChanged_receiver(QString text, bool isStar_)
 {
+    if(text == "")
+        return;
     QString ID;
     ID.prepend(QCryptographicHash::hash(text.toUtf8(),QCryptographicHash::Md4));
     QSettings settings("AMS","ClipboardCenter");
@@ -158,7 +198,7 @@ void Clipboarder::itemClicked_receiver(QString text)
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void Clipboarder::addItem(QString text ,QString time, bool isStar, int key)
+void Clipboarder::addItem(QString text ,QDateTime time, bool isStar, int key)
 {
     item *widget = new item(this);
     widget->setText(text);
@@ -192,21 +232,28 @@ void Clipboarder::addItem(QString text ,QString time, bool isStar, int key)
     ui->listWidget->addItem(item_ui);
     ui->listWidget->setItemWidget(item_ui, widget);
     item_ui->setSizeHint(QSize(widget->width(),widget->height()));
+    map_item_bored.insert(item_ui, widget);
 }
 
-void Clipboarder::addItem(QString text, QString time, int key)
+void Clipboarder::addItem(QString text, QDateTime time, int key)
 {
     item *widget = new item(this);
     widget->setText(text);
     widget->setTime(time);
     widget->setStar(true);
-    widget->setKey(key);
+    //widget->setKey(key);
     connect(widget, SIGNAL(itemIsStarChanged(QString, bool)), this, SLOT(itemIsStarChanged_receiver(QString, bool)));
     connect(widget, SIGNAL(itemClicked(QString)), this, SLOT(itemClicked_receiver(QString)));
     QListWidgetItem *item_ui = new QListWidgetItem("",ui->listWidget_starList);
     ui->listWidget_starList->addItem(item_ui);
     ui->listWidget_starList->setItemWidget(item_ui, widget);
     item_ui->setSizeHint(QSize(widget->width(),widget->height()));
+    map_item_bored.insert(item_ui, widget);
+}
+
+void Clipboarder::openUrl(QString url)
+{
+    QDesktopServices::openUrl(QUrl(url));
 }
 
 void Clipboarder::on_pushButton_toHistory_clicked()
@@ -234,5 +281,30 @@ void Clipboarder::on_pushButton_clicked()
 
 void Clipboarder::on_pushButton_info_clicked()
 {
-    QMessageBox::about(this, "About ", "<html><head/><body><p align=\"center\"><img src=\":/logo\"/></p><p align=\"center\"><span style=\" font-size:11pt; color:#a2b2c2;\">AMS</span><span style=\" font-size:11pt; font-weight:600; color:#507596;\"> - ClipboardCenter</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#507596;\">V1.0</span></p><p align=\"center\"><br/>By <span style=\" font-weight:600; color:#ffd800;\">San Diego</span></p><p align=\"center\"><span style=\" color:#55aaff;\">2421653893@qq.com</span></p><p align=\"center\"><a href=\"https://github.com/MrAMS/ClipboardCenter\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub</span></a></p></body></html>");
+    QDialog *dialog = new QDialog(this);
+    dialog->setWindowFlags(Qt::Dialog|Qt::WindowTitleHint|Qt::FramelessWindowHint|Qt::WindowCloseButtonHint);
+    //dialog->setAttribute(Qt::WA_TranslucentBackground);
+    /*QGraphicsDropShadowEffect *shadow_effect_dialog = new QGraphicsDropShadowEffect();
+    shadow_effect_dialog->setOffset(-5, 5);
+    shadow_effect_dialog->setColor(QColor("#3A4055"));
+    shadow_effect_dialog->setBlurRadius(8);*/
+    QVBoxLayout *vBoxLayout = new QVBoxLayout;
+    QFrame *frame = new QFrame;
+    frame->setStyleSheet("QFrame{background-color: #FFFFFF;}");
+    //frame->setGraphicsEffect(shadow_effect_dialog);
+    QLabel *context  = new QLabel("<html><head/><body><p align=\"center\"><img src=\":/logo\"/></p><p align=\"center\"><span style=\" font-size:11pt; color:#a2b2c2;\">AMS</span><span style=\" font-size:11pt; font-weight:600; color:#507596;\"> - ClipboardCenter</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#507596;\">V1.0</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\">A </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">convenient</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> and </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">quick</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> clipboard</span></p><p align=\"center\"><br/>By <a href=\"https://mrams.github.io/\"><span style=\" font-weight:600; text-decoration: underline; color:#ffd800;\">San Diego</span></a></p><p align=\"center\"><span style=\" color:#55aaff;\">2421653893@qq.com</span></p><p align=\"center\"><a href=\"https://github.com/MrAMS/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#55aaff;\">GitHub</span></a></p><p align=\"center\"><a href=\"http://git.oschina.net/mrams/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#00aaff;\">码云</span></a></p></body></html>");
+    connect(context,SIGNAL(linkActivated(QString)),this,SLOT(openUrl(QString)));
+    QPushButton *button = new QPushButton("OK");
+    button->setStyleSheet("QPushButton{padding:5px;border:none;}QPushButton:!hover{background-color:#FFFFFF;}QPushButton:hover{background-color:#81C784;}");
+    vBoxLayout->addWidget(context);
+    vBoxLayout->addWidget(button);
+    dialog->setLayout(vBoxLayout);
+    connect(button, SIGNAL(clicked()), dialog, SLOT(accept()));
+    dialog->exec();
+}
+
+void Clipboarder::on_listWidget_itemDoubleClicked(QListWidgetItem *item_)
+{
+    item *widget = map_item_bored.value(item_);
+    setClipboardText(widget->getText());
 }

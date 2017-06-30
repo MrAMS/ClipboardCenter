@@ -1,11 +1,16 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <QDialog>
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+
+#include <QDate>
+#include <QDateTime>
+#include <QTimer>
 
 class item : public QWidget
 {
@@ -19,8 +24,8 @@ public:
     void setText(QString text_);
     QString getText();
 
-    void setTime(QString time_);
-    QString getTime();
+    void setTime(QDateTime time_);
+    QDateTime getTime();
 
     void setStar(bool isStar_);
     bool getIsStar();
@@ -36,11 +41,14 @@ private:
     QHBoxLayout *hBoxLayout;
     QHBoxLayout *hBoxLayout2;
     QVBoxLayout *vBoxLayout;
+    QTimer *timer = new QTimer(this);
 
     int Key;
     QString text;
-    QString time;
+    QDateTime time;
     bool isStar;
+
+    QString getMyDate(QDateTime date);
 
 protected:
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
@@ -51,6 +59,7 @@ signals:
 
 public slots:
     void clicked_button_star();
+    void refreshDate();
 };
 
 #endif // ITEM_H
