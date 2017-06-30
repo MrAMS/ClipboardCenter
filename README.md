@@ -1,15 +1,18 @@
 # ClipboardCenter
 A fast and convenient clipboard
 一个快捷方便的剪贴板应用
+你是否有过为了复制粘贴文本而在各个窗口穿梭的苦恼？
+那么，我开发这款软件的初衷就是为了这个！
+
 此项目在[码云](http://git.oschina.net/mrams/ClipboardCenter)上
- 
+
 # Download
 - [Download for Windows users](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
 - [下载Windows版本](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
 
-### Description:
+# Description:
 
-**New!**
+**New! v1.1**
 
 - Support global hotkey, make it faster
 
@@ -29,7 +32,7 @@ A fast and convenient clipboard
 
 - 你能收藏经常使用的文本
 
-### UI:
+# UI:
 ![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image1.png)
 ![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image2.png)
 ![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image3.png)
