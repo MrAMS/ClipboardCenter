@@ -1,7 +1,11 @@
 # ClipboardCenter
-### A fast and convenient clipboard
-#### 一个快捷方便的剪贴板应用
-#### 此项目在[码云](http://git.oschina.net/mrams/ClipboardCenter)上
+A fast and convenient clipboard
+一个快捷方便的剪贴板应用
+此项目在[码云](http://git.oschina.net/mrams/ClipboardCenter)上
+ 
+# Download
+- [Download for Windows users](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
+- [下载Windows版本](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
 
 ### Description:
 
