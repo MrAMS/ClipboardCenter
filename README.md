@@ -20,6 +20,7 @@ A fast and convenient clipboard
 - To fix the problem of crashing when copying some strings
 
 - 修复复制部分字符时崩溃的问题
+
  
 **v1.1**
 
