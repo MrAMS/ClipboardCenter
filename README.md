@@ -4,6 +4,9 @@ A fast and convenient clipboard
 你是否有过为了复制粘贴文本而在各个窗口穿梭的苦恼？
 那么，我开发这款软件的初衷就是为了这个！
 
+![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image1.png)
+![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image2.png)
+
 此项目在[码云](http://git.oschina.net/mrams/ClipboardCenter)上
 
 # Download
@@ -40,8 +43,4 @@ A fast and convenient clipboard
 
 - You can collect commonly used text
 
-- 你能收藏经常使用的文本
-
-# UI:
-![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image1.png)
-![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image2.png)
+- 你能收藏经常使用的文本 
