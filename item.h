@@ -7,10 +7,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-
-#include <QDate>
-#include <QDateTime>
-#include <QTimer>
+#include <QFrame>
 
 class item : public QWidget
 {
@@ -24,31 +21,30 @@ public:
     void setText(QString text_);
     QString getText();
 
-    void setTime(QDateTime time_);
-    QDateTime getTime();
-
     void setStar(bool isStar_);
     bool getIsStar();
 
 private:
-    const int textMaxLong = 17;
+    const int textMaxLong = 180;
     const int keyMax = 5;
     QLabel *label_text;
-    QLabel *label_time;
     QPushButton *button_star;
     QLabel *label_star;
     QLabel *label_key;
+    QPushButton *button_webSearch;
+    QPushButton *button_copy;
+    QPushButton *button_delete;
     QHBoxLayout *hBoxLayout;
     QHBoxLayout *hBoxLayout2;
     QVBoxLayout *vBoxLayout;
-    QTimer *timer = new QTimer(this);
+    QHBoxLayout *hBoxLayout_frame;
+    QFrame *frame_buttons;
 
     int Key;
     QString text;
-    QDateTime time;
     bool isStar;
 
-    QString getMyDate(QDateTime date);
+    const QString baiduSearchAPI="http://www.baidu.com/s?wd=";
 
 protected:
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
@@ -56,10 +52,17 @@ protected:
 signals:
     void itemIsStarChanged(QString text, bool isStar_);
     void itemClicked(QString text);
+    void itemCopy(QString text);
+    void itemWebSearch(QString text);
+    void itemDelete(QString text);
 
 public slots:
     void clicked_button_star();
-    void refreshDate();
+    void clicked_button_webSearch();
+    void clicked_button_copy();
+    void clicked_button_delete();
+    void focusOn();
+    void focusLost();
 };
 
 #endif // ITEM_H

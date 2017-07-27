@@ -15,6 +15,10 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QDesktopServices>
+#include <QAction>
+#include <QSystemTrayIcon>
+#include <QMenu>
+#include <QDesktopWidget>
 
 #include <QMap>
 #include <QClipboard>
@@ -48,15 +52,26 @@ private:
     QClipboard *board = QApplication::clipboard();
     QStringList list_clipboarde;
     QTimer *timer = new QTimer(this);
-    QTimer *timer_opTop = new QTimer(this);
     QMap<QListWidgetItem*, item*> map_item_bored;
+    QMenu *menu_tray = new QMenu(this);
+    QMap<QListWidgetItem*, item*> map_item_starList;
+
+    QSystemTrayIcon *system_tray = new QSystemTrayIcon(this);
 
     bool mMoveing;
     QPoint mMovePosition;
+    int screen_center_x = 0;
+    bool isHide=true;
+
+    const QString baiduSearchAPI="http://www.baidu.com/s?wd=";
+
 
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
+
+protected:
+     void closeEvent(QCloseEvent *event);
 
 private slots:
 
@@ -69,27 +84,45 @@ private slots:
     void clipboardChanged(QClipboard::Mode mode_);
 
     void fRefresh();
-    void fRefreshWindowOnTop();
 
     void setClipboardText(const QString &text);
     QString getClipboardText();
 
+    void saveSettings();
+    void loadSettings();
     void loadClipboardList(QClipboard::Mode mode_);
     void loadStarList();
     bool isStarText(QString text);
+
     void itemIsStarChanged_receiver(QString text, bool isStar_);
     void itemClicked_receiver(QString text);
+    void itemCopy_receiver(QString text);
+    void itemWebSearch_receiver(QString text);
+    void itemDelete_receiver(QString text);
+    void itemDelete_receiver_starList(QString text);
 
-    void addItem(QString text, QDateTime time, bool isStar, int key);
-    void addItem(QString text, QDateTime time, int key);
 
+    void addItem(QString text, bool isStar, int key);
+    void addItem_starList(QString text, int key);
+
+    void showWidget();
+    void hideWidget();
+    void onTheTop();
+    void disOnTheTop();
+    void searchItem();
     void openUrl(QString url);
+    void showAboutWidget();
+
+    void createActions();
 
     void on_pushButton_toHistory_clicked();
     void on_pushButton_toStar_clicked();
     void on_pushButton_clicked();
     void on_pushButton_info_clicked();
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item_);
+    void on_pushButton_show_clicked();
+    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+    void on_listWidget_starList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 };
 
 #endif // CLIPBOARDER_H

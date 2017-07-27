@@ -1,12 +1,18 @@
 #include "clipboarder.h"
 #include <QApplication>
 #include <MyGlobalShortCut/MyGlobalShortCut.h>
+#include <QAction>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Clipboarder w;
     w.show();
+
+    a.setApplicationName("ClipboardCenter");
+    a.setOrganizationName("AMS(San Diego)");
+    a.setOrganizationDomain("https://github.com/MrAMS/ClipboardCenter");
+    a.setApplicationDisplayName("ClipboardCenter");
 
     MyGlobalShortCut *shortcut_Ctrl1 = new MyGlobalShortCut("Ctrl+1",&w);
     QObject::connect(shortcut_Ctrl1,SIGNAL(activated()),&w,SLOT(hotKey_Ctrl1()));

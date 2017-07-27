@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>347</height>
+    <width>352</width>
+    <height>337</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,12 +37,22 @@ border-radius:6px;                                                            mi
 QScrollBar::handle:vertical:hover{
  background:#d0d0d0;}  
 QScrollBar::add-line:vertical{
- background:url(:/down) center no-repeat;}                                                          QScrollBar::sub-line:vertical{
-background:url(:/up) center no-repeat;
+ background:#FFFFFF;}                                                          QScrollBar::sub-line:vertical{
+background:#FFFFFF;
 }
+
 QMainWindow
 {
 border-radius:15px
+}
+QListWidgetItem
+{
+padding:0px;
+}
+QToolTip{
+        border: 1px solid rgb(111, 156, 207);
+        background: white;
+        color: rgb(51, 51, 51);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -114,58 +124,10 @@ background-color:#F66F6C;
          </widget>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QFrame" name="frame_2">
-         <property name="styleSheet">
-          <string notr="true">background-color: #F6F6F6;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#a2b2c2;&quot;&gt;AMS&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#507596;&quot;&gt; - ClipboardCenter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_quit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="icon.qrc">
-              <normaloff>:/exit</normaloff>:/exit</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0" rowspan="3">
+       <item row="2" column="1">
         <widget class="QFrame" name="frame">
          <property name="styleSheet">
-          <string notr="true">background-color: #F6F6F6;</string>
+          <string notr="true">background-color: #FFFFFF;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -173,7 +135,7 @@ background-color:#F66F6C;
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="pushButton_toHistory">
             <property name="styleSheet">
@@ -188,8 +150,8 @@ background-color:#F66F6C;
             </property>
             <property name="iconSize">
              <size>
-              <width>32</width>
-              <height>32</height>
+              <width>24</width>
+              <height>24</height>
              </size>
             </property>
            </widget>
@@ -208,21 +170,21 @@ background-color:#F66F6C;
             </property>
             <property name="iconSize">
              <size>
-              <width>32</width>
-              <height>32</height>
+              <width>24</width>
+              <height>24</height>
              </size>
             </property>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer">
+           <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -241,8 +203,65 @@ background-color:#F66F6C;
             </property>
             <property name="iconSize">
              <size>
-              <width>32</width>
-              <height>32</height>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QFrame" name="frame_2">
+         <property name="styleSheet">
+          <string notr="true">background-color: #F6F6F6;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#a2b2c2;&quot;&gt;AMS&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#507596;&quot;&gt; - ClipboardCenter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_show">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/up</normaloff>:/up</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
              </size>
             </property>
            </widget>
