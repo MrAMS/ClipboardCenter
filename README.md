@@ -7,12 +7,21 @@ A fast and convenient clipboard
 此项目在[码云](http://git.oschina.net/mrams/ClipboardCenter)上
 
 # Download
-- [Download for Windows users](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
-- [下载Windows版本](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter%20v1.1.0_Beta.zip)
+- [Download for Windows users](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter_v2.0_beta.zip)
+- [下载Windows版本](http://7xp4s5.com1.z0.glb.clouddn.com/ClipboardCenter_v2.0_beta.zip)
 
 # Description:
 
-**New! v1.1**
+**New! v2.0**
+- -interface optimization, window operation optimization, item added toolbar, and add tray menu
+
+- 界面大优化、窗口操作优化、列表项(item)增加工具条、增加托盘菜单
+
+- To fix the problem of crashing when copying some strings
+
+- 修复复制部分字符时崩溃的问题
+ 
+**v1.1**
 
 - Support global hotkey, make it faster
 
@@ -33,6 +42,5 @@ A fast and convenient clipboard
 - 你能收藏经常使用的文本
 
 # UI:
-![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image1.png)
-![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image2.png)
-![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter/image3.png)
+![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image1.png)
+![](http://7xp4s5.com1.z0.glb.clouddn.com/github/ClipboardCenter_v2.0/image2.png)
