@@ -6,23 +6,14 @@
         <file alias="hi2">icon/history_24px_558009_easyicon.net.png</file>
         <file alias="st1_16px">icon/star_16px_557879_easyicon.net.png</file>
         <file alias="st2_16px">icon/star_16px_558079_easyicon.net.png</file>
-        <file alias="kCtrl">icon/alternative_ctrl_key_24px_7507_easyicon.net.png</file>
-        <file alias="k1">icon/1_key_24px_13271_easyicon.net.png</file>
-        <file alias="k2">icon/2_key_24px_16087_easyicon.net.png</file>
-        <file alias="k3">icon/3_key_24px_16483_easyicon.net.png</file>
-        <file alias="k4">icon/4_key_24px_17263_easyicon.net.png</file>
-        <file alias="k5">icon/5_key_24px_18172_easyicon.net.png</file>
         <file alias="info">icon/info_24px_557815_easyicon.net.png</file>
         <file alias="logo">icon/clipboard_39.683168316832px_1208025_easyicon.net.png</file>
-        <file alias="exit">icon/close_24px_557950_easyicon.net.png</file>
         <file alias="up">icon/up_arrow_27.085714285714px_1205504_easyicon.net.png</file>
         <file alias="down">icon/down_arrow_26.823529411765px_1205407_easyicon.net.png</file>
     </qresource>
     <qresource prefix="/menu_tray">
         <file alias="updata">icon/loop_16px_1182036_easyicon.net.png</file>
-        <file alias="web">icon/publ_16px_1182146_easyicon.net.png</file>
         <file alias="about">icon/info_outline_16px_1181948_easyicon.net.png</file>
-        <file alias="help">icon/live_help_16px_1181990_easyicon.net.png</file>
         <file alias="quit">icon/exit_to_app_16px_1181832_easyicon.net.png</file>
         <file alias="show">icon/home_16px_1181940_easyicon.net.png</file>
         <file alias="seetings">icon/settings_16px_1182195_easyicon.net.png</file>
