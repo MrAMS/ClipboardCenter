@@ -44,7 +44,7 @@ private:
     QString text;
     bool isStar;
 
-    const QString baiduSearchAPI="http://www.baidu.com/s?wd=";
+    const QString baiduSearchAPI="https://www.baidu.com/s?wd=";
 
 protected:
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
