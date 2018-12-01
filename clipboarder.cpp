@@ -1,8 +1,6 @@
 #include "clipboarder.h"
 #include "ui_clipboarder.h"
 
-#include <qDebug>
-
 Clipboarder::Clipboarder(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Clipboarder)
@@ -20,7 +18,7 @@ Clipboarder::Clipboarder(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->frame_2->layout()->setMargin(0);
     ui->frame->layout()->setMargin(0);
-    //setWindowOpacity(0.8);
+    setWindowOpacity(0.8);
     loadSettings();
 
     QAction* action_save = new QAction(this);
@@ -30,14 +28,14 @@ Clipboarder::Clipboarder(QWidget *parent) :
     if(!QSystemTrayIcon::isSystemTrayAvailable())
         return;
     createActions();
-    system_tray ->setToolTip(tr("AMS - ClipboardCenter v2.0"));
+    system_tray ->setToolTip(tr("AMS - ClipboardCenter v2.1"));
     system_tray ->setIcon(QIcon("://logo"));
     system_tray->setContextMenu(menu_tray);
     //connect(system_tray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconIsActived(QSystemTrayIcon::ActivationReason)));
     //connect(tray_menu, SIGNAL(showWidget()), this, SLOT(showNormal()));
 
     system_tray->show();
-    system_tray->showMessage(tr("AMS - ClipboardCenter v2.0"), QString("ClipboardCenter is already!"));
+    system_tray->showMessage(tr("AMS - ClipboardCenter v2.1"), QString(tr("ClipboardCenter已准备就绪")));
 
     timer->start(500);
     connect(timer, SIGNAL(timeout()), this, SLOT(fRefresh()));
@@ -137,6 +135,8 @@ void Clipboarder::hotKey_Ctrl5()
 void Clipboarder::clipboardChanged(QClipboard::Mode mode_)
 {
     QString text = getClipboardText();
+    if(text.isEmpty())
+        return;
     if(list_clipboarde.isEmpty())
     {
         list_clipboarde.insert(0,text);
@@ -144,8 +144,8 @@ void Clipboarder::clipboardChanged(QClipboard::Mode mode_)
         emit on_pushButton_toHistory_clicked();
         if(isHide)
             onTheTop();
-        else
-            disOnTheTop();
+        //else
+            //disOnTheTop();
         return;
     }
     if(mode_ != mode or text.isEmpty() or list_clipboarde[0]==text)
@@ -371,9 +371,9 @@ void Clipboarder::showAboutWidget()
     QFrame *frame = new QFrame;
     frame->setStyleSheet("QFrame{background-color: #FFFFFF;}");
     //frame->setGraphicsEffect(shadow_effect_dialog);
-    QLabel *context  = new QLabel("<html><head/><body><p align=\"center\"><img src=\":/logo\"/></p><p align=\"center\"><span style=\" font-size:11pt; color:#a2b2c2;\">AMS</span><span style=\" font-size:11pt; font-weight:600; color:#507596;\"> - ClipboardCenter</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#507596;\">V2.0</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\">A </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">convenient</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> and </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">quick</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> clipboard</span></p><p align=\"center\"><br/>By <a href=\"https://mrams.github.io/\"><span style=\" font-weight:600; text-decoration: underline; color:#ffd800;\">San Diego</span></a></p><p align=\"center\"><span style=\" color:#55aaff;\">2421653893@qq.com</span></p><p align=\"center\"><a href=\"https://github.com/MrAMS/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#55aaff;\">GitHub</span></a></p><p align=\"center\"><a href=\"http://git.oschina.net/mrams/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#00aaff;\">码云</span></a></p></body></html>");
+    QLabel *context  = new QLabel("<html><head/><body><p align=\"center\"><img src=\":/logo\"/></p><p align=\"center\"><span style=\" font-size:11pt; color:#a2b2c2;\">AMS</span><span style=\" font-size:11pt; font-weight:600; color:#507596;\"> - ClipboardCenter</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#507596;\">V2.1</span></p><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\">A </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">convenient</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> and </span><span style=\" font-size:11pt; font-weight:600; color:#507596;\">quick</span><span style=\" font-size:11pt; font-weight:600; color:#a2b2c2;\"> clipboard</span></p><p align=\"center\"><br/>By <a href=\"https://mrams.github.io/\"><span style=\" font-weight:600; text-decoration: underline; color:#ffd800;\">San Diego</span></a></p><p align=\"center\"><span style=\" color:#55aaff;\">2421653893@qq.com</span></p><p align=\"center\"><a href=\"https://github.com/MrAMS/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#55aaff;\">GitHub</span></a></p><p align=\"center\"><a href=\"http://git.oschina.net/mrams/ClipboardCenter\"><span style=\" font-weight:600; text-decoration: underline; color:#00aaff;\">码云</span></a></p></body></html>");
     connect(context,SIGNAL(linkActivated(QString)),this,SLOT(openUrl(QString)));
-    QPushButton *button = new QPushButton("OK");
+    QPushButton *button = new QPushButton(tr("关闭"));
     button->setStyleSheet("QPushButton{padding:5px;border:none;}QPushButton:!hover{background-color:#FFFFFF;}QPushButton:hover{background-color:#81C784;}");
     vBoxLayout->addWidget(context);
     vBoxLayout->addWidget(button);
@@ -398,10 +398,10 @@ void Clipboarder::createActions()
     //action_setting->setIcon(QIcon(":/menu_tray/settings"));
     action_quit->setIcon(QIcon(":/menu_tray/quit"));
 
-    action_show->setText(tr("Show"));
-    action_quit->setText(tr("Quit"));
+    action_show->setText(tr("主界面"));
+    action_quit->setText(tr("退出"));
     //action_login_home->setText(tr("Home on Web"));
-    action_about->setText(tr("About"));
+    action_about->setText(tr("关于我们"));
     //action_check_update->setText(tr("Updata"));
     //action_setting->setText(tr("Settings"));
 
