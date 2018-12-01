@@ -103,9 +103,6 @@ padding:0px;
            </item>
            <item>
             <widget class="QPushButton" name="pushButton">
-             <property name="toolTip">
-              <string>清除所有收藏</string>
-             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
 padding:5px;
@@ -119,7 +116,7 @@ background-color:#F66F6C;
 }</string>
              </property>
              <property name="text">
-              <string>清除</string>
+              <string>Clear All</string>
              </property>
             </widget>
            </item>
@@ -141,9 +138,6 @@ background-color:#F66F6C;
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="pushButton_toHistory">
-            <property name="toolTip">
-             <string>&lt;b&gt;历史记录&lt;/b&gt;</string>
-            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -164,9 +158,6 @@ background-color:#F66F6C;
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_toStar">
-            <property name="toolTip">
-             <string>&lt;b&gt;收藏夹&lt;/b&gt;</string>
-            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -200,9 +191,6 @@ background-color:#F66F6C;
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_info">
-            <property name="toolTip">
-             <string>&lt;b&gt;关于我们&lt;/b&gt;</string>
-            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -259,9 +247,6 @@ background-color:#F66F6C;
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
             <property name="styleSheet">
              <string notr="true"/>
